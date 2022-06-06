@@ -10,13 +10,13 @@ Clock = pygame.time.Clock()
 Game = cls_Game()
 
 # # Titre de la fenetre
-pygame.display.set_caption("LavLab's PyGame - TEMPLATE")
+pygame.display.set_caption("LavLab's PyGame - CometsFalls")
 
 # Definition de l'ecran (X,Y)
-GameScreen = pygame.display.set_mode((512,900))
+GameScreen = pygame.display.set_mode((1800,800))
 
 # Souris invisible
-pygame.mouse.set_visible(0)
+pygame.mouse.set_visible(1)
 
 while Game.c_StateRunning:
     
@@ -31,24 +31,30 @@ while Game.c_StateRunning:
  
     if not Game.c_StateBreak and not Game.c_StateLose:
         
-        # Entity
-        for entity in Game.all_entities:
+        # Players
+        for player in Game.all_Players:
                         
             # Déplacement DROITE
             if Game.c_PressedKeys.get(pygame.K_RIGHT):
-                entity.Move_Right()
+                player.Move_Right()
             
             # Déplacement GAUCHE
             if Game.c_PressedKeys.get(pygame.K_LEFT):
-                entity.Move_Left()
+                player.Move_Left()
                 
             # Déplacement HAUT
             if Game.c_PressedKeys.get(pygame.K_UP):
-                entity.Move_Top()
+                player.Move_Top()
                 
             # Déplacement BAS
             if Game.c_PressedKeys.get(pygame.K_DOWN):
-                entity.Move_Bot()
+                player.Move_Bot()
+                
+        # Enemies
+        for enemy in Game.all_Enemies:
+            
+            # Déplacement
+            enemy.Move()
             
     
     # MAJ de l'ecran
